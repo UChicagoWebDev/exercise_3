@@ -1,6 +1,6 @@
 # Exercise 3: A Weblog
 
-5 points
+10 points
 
 **DUE: Friday, April 14 by 5:30pm**
 
