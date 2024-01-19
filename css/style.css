@@ -84,3 +84,7 @@ input[type=submit] {
   border-bottom: 1px solid #CCC;
   margin-bottom: 20px;
 }
+
+.error {
+  color: darkred;
+}

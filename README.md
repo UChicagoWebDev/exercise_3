@@ -9,48 +9,28 @@
 One very common kind database-driven web application is a Content Management
 System, or CMS. A CMS provides an interface for users to write content—posts,
 articles, whole web pages—that is stored in a database, and then creates web
-pages from those entries, without the author needing to know any HTML. And by
-far the most popular CMS, [WordPress](https://wordpress.com/),is a PHP
-application.
+pages from those entries, without the author needing to know any HTML.
 
 We're going to make our own very simple CMS for a web journal, with posts and
-comments. The assignment this week is to modify the `.php` files in `exercise_3`
+comments. The assignment this week is to modify the `.py` files in `exercise_3`
 to make the pages display posts and comments that are stored in a database, and
 to enable users to create new posts and leave new comments.
 
-First you'll need your own working version of our modified LAMP stack, with
-SQLite replacing MySQL, and your laptop's OS replacing Linux, and PHP's built-in
-web server instead of Apache.
+The LAMP stack is still free and still powerful, but it can be harder to get running on your laptops than some alternatives. Instead we're going to use Python as our server-side language. It's widely used both in application development and in scientific computing, and it has some things we'll need already built-in. So first, install the latest stable version of Python from https://www.python.org/.
 
-<details>
-    <summary><b>Mac Instructions</b></summary>
+From the root our your exercise directory (ie this one), start your server with:
 
-    - Install PHP: https://www.php.net/manual/en/install.macosx.packages.php)
-    - SQLite is already installed
-</details>
+`python3 weblog.py`
 
-<details>
-    <summary><b>Windows Instructions</b></summary>
-
-    - Install Windows Subsystem Linux (WSL): https://learn.microsoft.com/en-us/windows/wsl/install
-    - Inside WSL, install php:
-      `sudo apt-get install -y git php8.2 php8.2-curl php8.2-xml php8.2-mbstring php8.2-gd php8.2-sqlite3`
-    - Download SQLite: https://www.sqlite.org/download.html
-</details>
-
-From the root our your exercise directory (ie this one), launch PHP's
-[built-in web server](https://www.php.net/manual/en/features.commandline.webserver.php):
-
-`php -S localhost:8000`
-
-You should be able to see your pages at e.g. http://localhost:8000/weblog.php
+You should be able to see your pages at e.g. http://localhost:8000/
 
 From there:
 1. You can connect to the SQLite3 database in `db/weblog.sqlite3`. It has
   already been set up to have tables for posts and comments by running the
   commands in `create_tables.sql`.
-1. Modify `weblog.php` to fetch posts and their associated comments from the
-    database and display them to visitors.
+1. Modify `weblog.py` to fetch posts and their associated comments from the
+    database and display them to visitors, and modify index_page.py to render the 
+    posts and comments retreived from the database
     - Use no more than two queries to get the existing posts and their comments
       (it's possible to do this in one query).
     - Display posts in reverse chronological order. That is, with the newest
@@ -59,19 +39,22 @@ From there:
     - Put the `id` of posts in the appropriate HTML attributes to enable
       linking to individual posts on the page and to comment pages for each post.
     - When displaying user-entered information like titles, posts, or usernames, use
-      the [htmlspecialchars](https://www.php.net/manual/en/function.htmlspecialchars.php)
+      the [html.escape](https://docs.python.org/3/library/html.html#html.escape)
       function to make sure special characters like < and > render correctly in HTML.
     - Replace `<yourname>` with your name.
-1. Modify `create_post.php` to insert a new row in the `posts` table.
-    - Be sure to add a secret password in the PHP code, and only add a row if the
-      password the user entered matches! For ease in grading, use the password `punpernickel`
+1. Modify `weblog.py` to insert a new row in the `posts` table in response to an 
+    appropriate POST message.
+    - Be sure to add a secret password in the your code, and only add a row if the
+      password the user entered matches! For ease in grading, use the password `phil`
     - Use the `id` attribute to our posts and include it as a
       [URL Fragment](https://en.wikipedia.org/wiki/URI_fragment) in our links to
       let us deep link to a specific post.
     - Because we're accepting content from users, be sure to
-      [sanitize your inputs](https://xkcd.com/327/) using prepared statements to
-  do the inserts rather than creating queries with string concatenation.
-1. Modify `leave_comment.php` to enable users to leave comments on posts.
+      [sanitize your inputs](https://xkcd.com/327/) using placeholders to form the insert
+      statements rather than creating queries with string concatenation.
+      https://docs.python.org/3/library/sqlite3.html#how-to-use-placeholders-to-bind-values-in-sql-queries.
+1. Modify `weblog.py` to enable users to leave comments on posts, and modify 
+  `leave_comment.py` to display the post teh user is commenting on and any previous comments.
     - We'll get a `post_id` as a query param. Fetch the post and any existing
       comments from the database in a single query (you'll have to use a `JOIN`).
     - We'll let any users post comments without authentication. It's become clear
@@ -80,8 +63,7 @@ From there:
       sanitizing as before.
 
 Don't worry about mobile layouts for this exercise, about or about features like
-previewing or editing. When you are done, push the `exercise-3` folder to your
-class repository on GitLab.
+previewing or editing.
 
 Remember to include in your submission any classmates you collaborated with and
 any materials you consulted.
@@ -97,16 +79,16 @@ One point each for:
   looping over the results more complicated).
 - Server-side rendering: Correctly builds main page from fetched data: loops to
   write Post and Comment divs. Displays newest Posts at the top, and Comments in
-  chronological order.
-- Correctly builds the leave_comment.php page, displaying the text of the post,
+  chronological order, oldest at the top and newest at the bottom.
+- Correctly builds the comment page, displaying the text of the post,
   and other comments posted so far in the thread.
 - Form submission: Correctly handles POSTing new posts and comments and parses
-  them out of the `$_POST` supervariable.
+  them out of the form data.
 - INSERT: Correctly inserts posted comments and posts to the database. Comments
   have the correct relationship to posts.
-- Escaping: Correctly uses `htmlspecialchars` when rendering the content of posts
+- Escaping: Correctly uses `html.escape` when rendering the content of posts
   and comments, which are usedr-generated.
 - Correctly sanitizes user-provided data for posts by binding values to prepared 
-  statements.
+  placeholders.
 - Correctly sanitized user-provided data for comments by binding values to prepared 
-  statements.
+  placeholders.

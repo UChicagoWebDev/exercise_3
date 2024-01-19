@@ -1,8 +1,9 @@
-<?php
-  $db = new PDO('sqlite:db/weblog.sqlite3');
- ?>
+def write_html(posts_with_comments=[]):
+    # TODO: get all the posts and their comments
+    #       chop up the below html and loop through the posts and comments to create 
+    #       the page using content from the database
 
-<html>
+    html = f"""<html>
 <head>
   <title>Exercise 3 - A Web Journal</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -10,7 +11,7 @@
 </head>
 <body>
   <div class="compose-button">
-    <a href="create_post.php" title="create post">
+    <a href="post" title="create post">
       <i class="material-icons">create</i>
     </a>
   </div>
@@ -63,7 +64,7 @@ towards the ocean with me.
           </div>
         </comment>
 
-        <a href="leave_comment.php?post_id=3">
+        <a href="comment?post_id=3">
           <i class="material-icons">create</i>
           Leave a comment
         </a>
@@ -96,7 +97,7 @@ and so cold
 
       <h3>0 Comments</h3>
       <div class="comment-block">
-        <a href="leave_comment.php?post_id=2">
+        <a href="comment?post_id=2">
           <i class="material-icons">create</i>
           Leave a comment
         </a>
@@ -129,7 +130,7 @@ Proving his beauty by succession thine.
 
       <h3>0 Comments</h3>
       <div class="comment-block">
-        <a href="leave_comment.php?post_id=1">
+        <a href="comment?post_id=1">
           <i class="material-icons">create</i>
           Leave a comment
         </a>
@@ -149,7 +150,7 @@ Hello World!
 
       <h3>0 Comments</h3>
       <div class="comment-block">
-        <a href="leave_comment.php?post_id=0">
+        <a href="comment?post_id=0">
           <i class="material-icons">create</i>
           Leave a comment
         </a>
@@ -158,3 +159,6 @@ Hello World!
 
   </div> <!-- end of posts block -->
 </body>
+</html>
+"""
+    return html

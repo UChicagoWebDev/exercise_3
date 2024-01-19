@@ -1,4 +1,6 @@
-<html>
+def write_html(post={}):
+  # TODO: Display the post the user is commenting on, and the existing comments
+  html = f"""<html>
 <head>
   <title>Leave a Comment</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -59,5 +61,7 @@ towards the ocean with me.
       <input type="submit" name="submit" value="Leave Comment"></input>
     </form>
   </div>
+  <a href="/">Home</a>
 </body>
-</html>
+</html>"""
+  return html
