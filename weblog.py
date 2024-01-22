@@ -15,7 +15,7 @@ SECRET_PASSWORD = "phil"
 class WebRequestHandler(BaseHTTPRequestHandler):
 
     # BaseHTTPRequestHandler will call this function for any GET request
-    def do_GET(self, rejected=False):
+    def do_GET(self):
         print("GET")
         parsedUrl = urlparse(self.path)
         # This is a python dictionary containing any query parameters the user sent
@@ -47,9 +47,12 @@ class WebRequestHandler(BaseHTTPRequestHandler):
             case "/comment":
                 # TODO: get the post we're commenting on and all the previous comments on it
                 post = {}
+                # SELECT * from POSTS where post_id = ...
+                # SELECT * from COMMENTS where post_id = ...
+                # post.comments = comments
                 responseBody = leave_comment.write_html(post)
             case "/post":
-                responseBody = create_post.write_html(rejected)
+                responseBody = create_post.write_html()
             case "/css/style.css":
                 responseBody = ""
                 with open("css/style.css") as style:
@@ -86,13 +89,25 @@ class WebRequestHandler(BaseHTTPRequestHandler):
                 # get the password that the user entered into the form data
                 # if it doesn't match the secret password on our server, return the page with
                 # an error message. See create_post.py.
+
+
                 password = formData.get("password")
-                if password != SECRET_PASSWORD:
-                    self.do_GET(rejected=True)
+                if password == SECRET_PASSWORD:
+                    # TODO: otherwise, the password matches, so we need to update the database with
+                    # our new post
+                    # do_some_stuff()
+
+                    # We redirect back to the index page, where our new post should be at the top
+                    response = http_headers.redirect_to("/")
+                    self.wfile.write(response.encode("utf-8"))
                     return
-                
-                # TODO: otherwise, the passowrd matches, so we need to update the database with
-                # our new post
+                else:
+                    response = http_headers.write_headers()
+                    response += http_headers.write_blank_line()
+                    response += create_post.write_html("rejected")
+                    self.wfile.write(response.encode("utf-8"))
+                    return
+                                
             case _:
                 response = http_headers.write_404()
                 self.wfile.write(response.encode("utf-8"))

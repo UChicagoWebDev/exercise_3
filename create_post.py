@@ -1,4 +1,4 @@
-def write_html(rejected=False):
+def write_html(message=""):
   # TODO: Display the post the user is commenting on, and the existing comments
   html = f"""<html>
 <head>
@@ -11,9 +11,12 @@ def write_html(rejected=False):
   <div class="create-post">
     <h2>Create a Post</h2>"""
   
-  if rejected:
+  if message == "rejected":
     html += """
     <h3 class="error">Oops, wrong password!</h3>"""
+  elif message == "success":
+    html += """
+    <h3 class="success">Post created! See it <a href="/">here</a>."""
 
   html += """
     <form method="post">
