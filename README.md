@@ -2,7 +2,7 @@
 
 10 points
 
-**DUE: Friday, January 26 by 5:00pm**
+**DUE: Friday, April 12 by 5:00pm**
 
 ### Instructions
 
@@ -32,7 +32,7 @@ From there:
     database and display them to visitors, and modify index_page.py to render the 
     posts and comments retreived from the database
     - Use no more than two queries to get the existing posts and their comments
-      (it's possible to do this in one query).
+      (note: it is possible to do this in one query).
     - Display posts in reverse chronological order. That is, with the newest
       (highest id) posts at the top. Display Comments in chronological order from
       lowest id to highest.
