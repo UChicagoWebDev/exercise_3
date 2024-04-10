@@ -85,7 +85,8 @@ One point each for:
   query, though it does make looping over the results more complicated).
 - Server-side rendering: Correctly builds main page from fetched data: loops to
   write Post and Comment divs. Displays newest Posts at the top, and Comments in
-  chronological order, oldest at the top and newest at the bottom.
+  chronological order, oldest at the top and newest at the bottom. Posts have
+  links in their h2 that scroll to that post.
 - Correctly builds the comment page, displaying the text of the post,
   and other comments posted so far in the thread.
 - Form submission: Correctly handles POSTing new posts and comments and parses
