@@ -21,9 +21,9 @@ def write_html(posts_with_comments=[]):
 
   <div id="posts">
     <post class="post" id="3">
-      <h2 class=post-title id="a_post_title">
+      <h2 class=post-title>
         A Post Title
-        <a href="#a_post_title">
+        <a href="#3">
           <i class="material-icons">link</i>
         </a>
       </h2>
@@ -73,9 +73,9 @@ towards the ocean with me.
     </post>
 
     <post id="2">
-      <h2 class=post-title id="this_is_just_to_say">
+      <h2 class=post-title>
         This Is Just To Say
-        <a href="#this_is_just_to_say">
+        <a href="#2">
           <i class="material-icons">link</i>
         </a>
       </h2>
@@ -106,9 +106,9 @@ and so cold
     </post>
 
     <post id="1">
-      <h2 class=post-title id="sonnet_2">
+      <h2 class=post-title>
         Sonnet 2
-        <a href="#sonnet_2">
+        <a href="#1">
           <i class="material-icons">link</i>
         </a>
       </h2>
@@ -139,9 +139,9 @@ Proving his beauty by succession thine.
     </post>
 
     <post id="0">
-      <h2 class=post-title id="first_post">
+      <h2 class=post-title>
         First Post
-        <a href="#first_post">
+        <a href="#0">
           <i class="material-icons">link</i>
         </a>
       </h2>

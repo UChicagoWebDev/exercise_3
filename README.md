@@ -46,9 +46,15 @@ From there:
     appropriate POST message.
     - Be sure to add a secret password in the your code, and only add a row if the
       password the user entered matches! For ease in grading, use the password `phil`
-    - Use the `id` attribute to our posts and include it as a
-      [URL Fragment](https://en.wikipedia.org/wiki/URI_fragment) in our links to
-      let us deep link to a specific post.
+    - Make the id of each post in the database the `id` attribute on your
+      `<post>` elements, like in 
+      https://github.com/UChicagoWebDev/private_exercise_3/blob/main/index_page.py#L23.
+      Update the anchor tag in the h2 of the post to link to the 
+      [fragment dentifier](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#anchor),
+      like in https://github.com/UChicagoWebDev/private_exercise_3/blob/main/index_page.py#L26. 
+      That makes it so opening the link in a post's h2 opens the page to the index and
+      scrolls to that post. For example, https://uchicagowebdev.com/examples/week_3/weblog.html#1 
+      opens the page scrolled down to "Sonnet 2."
     - Because we're accepting content from users, be sure to
       [sanitize your inputs](https://xkcd.com/327/) using placeholders to form the insert
       statements rather than creating queries with string concatenation.
