@@ -54,7 +54,7 @@ From there:
       statements rather than creating queries with string concatenation.
       https://docs.python.org/3/library/sqlite3.html#how-to-use-placeholders-to-bind-values-in-sql-queries.
 1. Modify `weblog.py` to enable users to leave comments on posts, and modify 
-  `leave_comment.py` to display the post teh user is commenting on and any previous comments.
+  `leave_comment.py` to display the post the user is commenting on and any previous comments.
     - We'll get a `post_id` as a query param. Fetch the post and any existing
       comments from the database in a single query (you'll have to use a `JOIN`).
     - We'll let any users post comments without authentication. It's become clear
@@ -71,12 +71,12 @@ any materials you consulted.
 ### Rubric
 
 One point each for:
-- Correctly retrieves a single post or comment from the the database with SELECT
-- Uses one query with a JOIN to fetch a post and any of its
+- Replace `<yourname>` with your name in the index, post, and comment pages
+- Uses one SELECT query with a JOIN to fetch a post and any of its
   comments for the leave_comment page.
 - Uses no more than two queries to fetch all the posts and all their comments
-  for the main page. (It's possible to do this in one query, though it does make
-  looping over the results more complicated).
+  for the main page each time it is loaded. (It's possible to do this in one 
+  query, though it does make looping over the results more complicated).
 - Server-side rendering: Correctly builds main page from fetched data: loops to
   write Post and Comment divs. Displays newest Posts at the top, and Comments in
   chronological order, oldest at the top and newest at the bottom.
