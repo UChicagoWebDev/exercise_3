@@ -10,7 +10,11 @@ def write_blank_line():
 
 def redirect_to(location):
     return f"""HTTP/1.0 302 Found
-Location: {location}"""
+Location: {location}
+
+"""
 
 def write_404():
-    return f"""HTTP/1.0 404 FILE NOT FOUND"""
+    return f"""HTTP/1.0 404 FILE NOT FOUND
+
+"""
